@@ -3,6 +3,7 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet">
   <meta charset="utf-8">
   <title>SSG in der ZDB</title>
 </head>
@@ -12,35 +13,35 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
   <script src="js/csv_to_html_table.js"></script>
     <script type="text/javascript" class="init">
-      $(document).ready(function() {
+      $(document).ready(function () {
         init_table({
           csv_path: 'ssg.csv',
           element: 'ssg',
-          csv_options: {"separator": "|"},
+          csv_options: {
+            "separator": "|"
+          },
           datatables_options: {
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-            "order": [[ 0, "asc" ]],
+            "order": [[0, "asc"]],
             "paging": true,
-            "columnDefs": [
-            {
-                "render": function ( data, type, row ) {
-                    var link = '<a href="http://ld.zdb-services.de/resource/organisations/' + data + '">' + data +'</a>';
-                    return link;
+            "columnDefs": [{
+                "render": function (data, type, row) {
+                  var link = '<a href="http://ld.zdb-services.de/resource/organisations/' + data + '">' + data + '</a>';
+                  return link;
                 },
                 "targets": 3
-            },
-            {
-                "render": function ( data, type, row ) {
-                    var link = '<a href="http://dispatch.opac.d-nb.de/CMD?ACT=SRCHA&IKT=8530&SRT=LST_ty&TRM=' + data + '">' + data +'</a>';
-                    return link;
+              }, {
+                "render": function (data, type, row) {
+                  var link = '<a href="http://dispatch.opac.d-nb.de/CMD?ACT=SRCHA&IKT=8530&SRT=LST_ty&TRM=' + data + '">' + data + '</a>';
+                  return link;
                 },
                 "targets": 0
-            }
+              }
             ],
-            buttons: [
-              {
+            buttons: [{
                 extend: 'csv',
                 text: 'Export CSV',
                 exportOptions: {
@@ -48,8 +49,7 @@
                     search: 'none'
                   }
                 }
-              },
-              {
+              }, {
                 extend: 'pdf',
                 text: 'Save current page',
                 exportOptions: {
