@@ -7,7 +7,7 @@ function init_table(options) {
   var csv_options = options.csv_options || {};
   var datatables_options = options.datatables_options || {};
 
-  $("#" + el).html('<table class="table table-striped table-condensed" id="my-table"></table>');
+  $("#" + el).html('<table class="display" id="my-table"></table>');
 
   $.when($.get(csv_path)).then(
     function(data){
