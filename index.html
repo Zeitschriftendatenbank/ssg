@@ -12,13 +12,18 @@
     <script type="text/javascript" class="init">
       jQuery.extend( jQuery.fn.dataTableExt.oSort, {
         "numeric-comma-pre": function ( a ) {
+          a = a.replace(/.+>(.+)<\/a>/,"$1");
           var x = (a == "-") ? 0 : a.replace( /,/, "." );
           return parseFloat( x );
         },
         "numeric-comma-asc": function ( a, b ) {
+          a = a.replace(/.+>(.+)<\/a>/,"$1");
+          b = b.replace(/.+>(.+)<\/a>/,"$1");
           return ((a < b) ? -1 : ((a > b) ? 1 : 0));
         },
         "numeric-comma-desc": function ( a, b ) {
+          a = a.replace(/.+>(.+)<\/a>/,"$1");
+          b = b.replace(/.+>(.+)<\/a>/,"$1");
           return ((a < b) ? 1 : ((a > b) ? -1 : 0));
         }
       } );
